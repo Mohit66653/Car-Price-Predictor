@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Used Car Selling Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="background-overlay"></div>
+
+    <div class="glass-container">
+        <header>
+            <h1>Used Car Selling Price Predictor</h1>
+            <p>AI-Powered Valuation Engine</p>
+        </header>
+
+        <form action="{{ url_for('home') }}" method="POST">
+            <div class="input-grid">
+
+                <div class="input-box">
+                    <input type="text" name="model" required="required">
+                    <span>Car Model (e.g. Swift, City)</span>
+                    <i></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="number" name="vehicle_age" required="required">
+                    <span>Vehicle Age (Years)</span>
+                    <i></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="number" name="km_driven" required="required">
+                    <span>Kilometers Driven</span>
+                    <i></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="number" step="0.1" name="mileage" required="required">
+                    <span>Mileage (kmpl)</span>
+                    <i></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="number" name="engine" required="required">
+                    <span>Engine (CC)</span>
+                    <i></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="number" step="0.1" name="max_power" required="required">
+                    <span>Max Power (bhp)</span>
+                    <i></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="number" name="seats" required="required">
+                    <span>Seats</span>
+                    <i></i>
+                </div>
+
+                <div class="select-box">
+                    <select name="seller_type" required="required">
+                        <option value="" disabled selected>Select Seller Type</option>
+                        <option value="Dealer">Dealer</option>
+                        <option value="Individual">Individual</option>
+                        <option value="Trustmark Dealer">Trustmark Dealer</option>
+                    </select>
+                </div>
+
+                <div class="select-box">
+                    <select name="fuel_type" required="required">
+                        <option value="" disabled selected>Select Fuel Type</option>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="CNG">CNG</option>
+                        <option value="LPG">LPG</option>
+                        <option value="Electric">Electric</option>
+                    </select>
+                </div>
+
+                <div class="select-box">
+                    <select name="transmission_type" required="required">
+                        <option value="" disabled selected>Transmission</option>
+                        <option value="Manual">Manual</option>
+                        <option value="Automatic">Automatic</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="glow-on-hover">Predict Price</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-card">
+            <h2>Estimated Price</h2>
+            <div class="price-tag">₹ {{ prediction }} Lakhs</div>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
